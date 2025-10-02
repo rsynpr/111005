@@ -1,0 +1,432 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: #fff; 
+            color: #333; 
+            overflow-x: hidden;
+        }
+
+
+        /* Video Background */
+        #music-background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('./na.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #ffb6d9;
+            letter-spacing: 1px;
+        }
+        
+        /* Rotating Bucket Section */
+        .rotating-bucket-section {
+            background-color: #F8BBD0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+            height: 100vh;
+        }
+
+        .left-column {
+            flex: 1;
+            font-size: 1.4rem;
+            padding-right: 20px;
+        }
+
+        .right-column {
+            flex: 1;
+            text-align: center;
+        }
+
+        .rotating-bucket {
+            width: 550px;
+            height: auto;
+            will-change: transform;
+        }
+        
+        /* Rotasi Animasi */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Content Section */
+        .content {
+            padding: 60px 10%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+
+        .content p {
+            max-width: 700px;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .content p.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tombol dan Popup Notes */
+        .notes-button {
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .notes-button:hover {
+            transform: scale(1.1);
+        }
+
+        #notes-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s;
+        }
+
+        #notes-popup-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .notes-popup {
+            background-color: #f8f8e7;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            width: 350%;
+            max-width: 1000px;
+            text-align: left;
+            transform: translateY(50px) scale(0.8) rotate(-1deg);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1.2), opacity 0.4s ease-in-out;
+        }
+
+        #notes-popup-overlay.show .notes-popup {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #555;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .notes-content h3 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .notes-content p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        /* Tombol Back to Top */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff4d6d;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: background 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background: #e63e5c;
+        }
+
+        /* Animasi Bunga Jatuh */
+        .flower {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear forwards;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.03); }
+        }
+
+        /* Animasi Fade-in-Up */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Music Player Section */
+        .music-player-section {
+            width: 90%;
+            max-width: 400px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .album-art-container {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .album-art {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .song-info {
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 15px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .song-title {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .artist-name {
+            font-size: 0.8em;
+            color: #b3b3b3;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+        
+        /* Kontrol Musik */
+        .music-player-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .music-player-controls .music-button {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 2em;
+            transition: color 0.2s ease;
+            margin: 0 5px;
+        }
+        
+        .music-player-controls .music-button:hover {
+            color: #ffb3d9;
+        }
+        
+        .progress-bar-container {
+            display: none;
+        }
+        
+        /* Footer Section */
+        footer {
+            background-color: #F8BBD0;
+            color: #333;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10; 
+        }
+
+        footer p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 12;
+        }
+
+        /* Canvas untuk animasi bunga dan rumput */
+        #flower-canvas {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 11;
+        }
+        
+        /* Responsif untuk Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .rotating-bucket-section {
+                flex-direction: column;
+                padding: 30px 5%;
+                height: auto;
+            }
+            .left-column {
+                padding-right: 0;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .rotating-bucket {
+                width: 100%;
+                max-width: 300px;
+            }
+            .corner-flower {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+  .video-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
