@@ -10,7 +10,6 @@ body {
     background: #fff;
     color: #333;
     overflow-x: hidden;
-    padding-bottom: 100px;
 }
 
 /* Video Background */
@@ -278,76 +277,86 @@ body {
 }
 
 /* Music Player Section */
-/* Music Player Floating */
 .music-player-section {
+    width: 90%;
+    max-width: 400px;
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    max-width: 400px;
-    background: #111;
-    border-radius: 18px;
-    padding: 15px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    z-index: 9999;
-
-    /* biar tidak goyang pas scroll */
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-/* Album art */
-.album-art-container {
-    flex-shrink: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #fff;
-}
-
-/* Song Info */
-.song-info {
-    flex: 1;
-    min-width: 0;
-}
-.song-title {
-    font-size: 1rem;
-    font-weight: bold;
     color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.album-art-container {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 15px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.album-art {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.song-info {
+    flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-.artist-name {
-    font-size: 0.85rem;
-    color: #bbb;
+    margin-right: 15px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Controls */
+.song-title {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.artist-name {
+    font-size: 0.8em;
+    color: #b3b3b3;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+
+/* Kontrol Musik */
 .music-player-controls {
     display: flex;
     align-items: center;
-    gap: 12px;
-}
-.music-player-controls button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-.music-player-controls button:hover {
-    transform: scale(1.2);
 }
 
+.music-player-controls .music-button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2em;
+    transition: color 0.2s ease;
+    margin: 0 5px;
+}
+
+.music-player-controls .music-button:hover {
+    color: #ffb3d9;
+}
 
 .progress-bar-container {
     display: none;
